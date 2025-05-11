@@ -1,0 +1,38 @@
+<div class="content">
+  <div class="left-side">
+    <h2>Nueva publicación</h2>
+
+    <form (ngSubmit)="addPost()" #postForm="ngForm">
+      <input
+        type="text"
+        placeholder="Título"
+        [(ngModel)]="newTitle"
+        name="title"
+        required
+      />
+      <br />
+      <textarea
+        placeholder="Contenido"
+        [(ngModel)]="newContent"
+        name="content"
+        required
+      ></textarea>
+      <br />
+      <button type="submit">Agregar publicación</button>
+    </form>
+  </div>
+  <div class="right-side">
+    <h1>Lista de publicaciones</h1>
+    <div class="posts-list">
+      @for (post of posts; track post) {
+        <app-post-card
+          [title]="post.title"
+          [content]="post.content"
+          [image]="post.image"
+          (delete)="removePost(posts.indexOf(post))"
+        >
+        </app-post-card>
+      }
+    </div>
+  </div>
+</div>
