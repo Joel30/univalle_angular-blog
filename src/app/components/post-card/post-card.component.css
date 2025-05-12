@@ -21,18 +21,38 @@
   padding: 0 1rem 1rem 1rem;
 }
 
+p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* número de líneas */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 button {
-  background-color: #f3005d;
-  color: white;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
+  margin-left: 5px;
 }
 
-button:hover {
-  background-color: #d2004a;
+.delete-button {
+  background-color: #FF0066;
+  color: white;
+}
+.edit-button {
+  background-color: #ffe600;
+  color: #000;
+}
+
+.delete-button:hover {
+  background-color: #FF0044;
+}
+
+.edit-button:hover {
+  background-color: #ffd700;
 }
 
 

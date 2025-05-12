@@ -1,35 +1,60 @@
 <div class="content">
   <div class="left-side">
-    <h2>Nueva publicación</h2>
+    <h2>{{editingPostId !== null ? 'Editar publicación' : 'Nueva publicación'}}</h2>
 
-    <form (ngSubmit)="addPost()" #postForm="ngForm">
+    <form (ngSubmit)="onSubmit()" [formGroup]="postForm">
       <input
         type="text"
         placeholder="Título"
-        [(ngModel)]="newTitle"
         name="title"
-        required
+        formControlName="title"
       />
+      @if (isValidField('title')) {
+        <span class="error-message">
+          {{ getErrorMessage('title') }}
+        </span>
+      }
       <br />
       <textarea
         placeholder="Contenido"
-        [(ngModel)]="newContent"
         name="content"
-        required
-      ></textarea>
+        formControlName="content"
+        ></textarea>
+        @if (isValidField('content')) {
+        <span class="error-message">
+          {{ getErrorMessage('content') }}
+        </span>
+      }
       <br />
-      <button type="submit">Agregar publicación</button>
+      <input
+        type="text"
+        placeholder="Url de la imagen"
+        name="image_url"
+        formControlName="image_url"
+      />
+      @if (isValidField('image_url')) {
+        <span class="error-message">
+          {{ getErrorMessage('image_url') }}
+        </span>
+      }
+      <br />
+      <button type="submit" 
+        [ngClass]="editingPostId !== null ? 'edit-button' : 'add-button'"
+        >
+        {{ editingPostId !== null ? 'Guardar cambios' : 'Agregar publicación' }}
+      </button>
     </form>
   </div>
   <div class="right-side">
     <h1>Lista de publicaciones</h1>
     <div class="posts-list">
-      @for (post of posts; track post) {
+      @for (post of posts; track post.id) {
         <app-post-card
           [title]="post.title"
           [content]="post.content"
-          [image]="post.image"
-          (delete)="removePost(posts.indexOf(post))"
+          [image]="post.image_url"
+          (delete)="removePost(post.id)"
+          (edit)="editPost(post)"
         >
         </app-post-card>
       }
