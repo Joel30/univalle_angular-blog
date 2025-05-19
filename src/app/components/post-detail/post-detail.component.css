@@ -1,0 +1,45 @@
+.post-detail, .not-found {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.post-detail h1 {
+  color: #01C298;
+  margin-bottom: 1rem;
+}
+
+.post-detail img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.post-detail p,
+.not-found p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+.post-detail p{
+  text-align: left;
+}
+
+.cod-error {
+  color: #FF0066;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.not-found h2 {
+  color: #FF0066;
+  margin-bottom: 1rem;
+}

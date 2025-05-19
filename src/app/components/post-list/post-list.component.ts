@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { PostCardComponent } from '../post-card/post-card.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Post, PostService } from '../../services/post.service';
@@ -12,18 +12,26 @@ import { CommonModule } from '@angular/common';
 })
 export class PostListComponent {
   defaultImage = 'assets/default-blog-img.png';
-  posts : Post[] = [];
+  posts: Post[] = [];
   public postService = inject(PostService);
 
   newTitle = '';
   newContent = '';
   newImageUrl = '';
-  editingPostId : number | null = null;
+  editingPostId: number | null = null;
 
   ngOnInit() {
     this.postService.postsBS.subscribe((posts) => {
       this.posts = posts;
     });
+  }
+
+  loadMore() {
+    this.postService.loadMorePosts();
+  }
+
+  canLoadMore(): boolean {
+    return this.postService.hasMorePosts();
   }
 
   savePost() {
@@ -39,7 +47,6 @@ export class PostListComponent {
     } else {
       this.postService.addPost(newPostData);
     }
-    this.refreshPosts();
   }
 
   editPost(post: Post) {
@@ -50,24 +57,18 @@ export class PostListComponent {
     });
     this.editingPostId = post.id;
   }
-  
+
   removePost(id: number) {
     this.postService.deletePost(id);
-    this.refreshPosts();
   }
 
-  refreshPosts() {
-    this.posts = this.postService.getPosts();
-  }
-
-  // Formularios reactivos
   private fb = inject(FormBuilder);
 
   postForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
     content: ['', [Validators.required, Validators.minLength(10)]],
     image_url: ['']
-  })
+  });
 
   isValidField(fieldName: string): boolean | null {
     return (
@@ -102,7 +103,6 @@ export class PostListComponent {
       return;
     }
 
-    console.log(this.postForm.value);
     this.newTitle = this.postForm.value.title;
     this.newContent = this.postForm.value.content;
     this.newImageUrl = this.postForm.value.image_url.trim() || this.defaultImage;

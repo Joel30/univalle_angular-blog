@@ -1,7 +1,11 @@
 <div class="post-card">
-  <img [src]="image" (error)="image = defaultImage" alt="Post Image"/>
+  <a [routerLink]="['/posts', postId]" class="post-link">
+    <img [src]="image" (error)="image = defaultImage" alt="Post Image"/>
+  </a>
   <div>
-    <h2>{{ title }}</h2>
+    <a [routerLink]="['/posts', postId]">
+      <h2>{{ title }}</h2>
+    </a>
     <p>{{ content }}</p>
     <button (click)="onDelete()" class="delete-button">Eliminar</button>
     <button (click)="onEdit()" class="edit-button">Editar</button>

@@ -50,6 +50,7 @@
     <div class="posts-list">
       @for (post of posts; track post.id) {
         <app-post-card
+          [postId]="post.id"
           [title]="post.title"
           [content]="post.content"
           [image]="post.image_url"
@@ -59,5 +60,6 @@
         </app-post-card>
       }
     </div>
+    <button (click)="loadMore()" *ngIf="canLoadMore()" class="btn-loadmore">Cargar más ...</button>
   </div>
 </div>

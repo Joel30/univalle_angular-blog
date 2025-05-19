@@ -1,0 +1,13 @@
+@if (post | async; as p) {
+  <div class="post-detail">
+    <h1>{{ p.title }}</h1>
+    <img [src]="p.image_url" alt="Imagen del post" (error)="p.image_url = defaultImage"/>
+    <p>{{ p.content }}</p>
+  </div>
+} @else {
+  <div class="not-found">
+    <div class="cod-error">404</div>
+    <h2>Publicación no encontrada</h2>
+    <p>La publicación solicitada no existe o ha sido eliminada.</p>
+  </div>
+}

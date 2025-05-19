@@ -1,12 +1,12 @@
 <nav class="navbar">
   <div class="navbar-brand">{{ title }}</div>
   <ul class="navbar-links">
-    <li><a href="#">Publicaciones</a></li>
+    <li><a routerLink="/posts" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Publicaciones</a></li>
   </ul>
 </nav>
 
 <main class="main">
-  <app-post-list></app-post-list>
+  <!-- <app-post-list></app-post-list> -->
+  <router-outlet />
 </main>
 
-<router-outlet />

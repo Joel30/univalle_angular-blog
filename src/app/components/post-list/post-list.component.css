@@ -60,6 +60,17 @@ button {
   font-size: 0.8rem;
 }
 
+.btn-loadmore {
+  background-color: #befff1;
+  color: #0f0f0f;
+  cursor: pointer;
+  border: solid 1px #01C298;
+}
+
+.btn-loadmore:hover {
+  background-color: #59eece;
+}
+
 @media screen and (max-width: 900px) {
   .content {
     grid-template-columns: 1fr;

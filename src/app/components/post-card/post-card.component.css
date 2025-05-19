@@ -8,7 +8,8 @@
   width: 250px;
   max-height: 200px;
   object-fit: cover;
-  border-radius: 8px
+  border-radius: 8px;
+  transition: transform 0.5s ease;
 }
 
 .post-card h2 {
@@ -55,6 +56,24 @@ button {
   background-color: #ffd700;
 }
 
+.post-card a {
+  text-decoration: none;
+  color: inherit;
+}
+.post-card a:hover {
+  color: #01C298;
+}
+
+.post-link {
+  text-decoration: none;
+  color: inherit;
+  display: inherit;
+  /* height: 100%; */
+}
+
+img:hover {
+  transform: scale(1.05);
+}
 
 @media screen and (max-width: 900px) {
   .post-card {
@@ -68,6 +87,10 @@ button {
   }
 
   .post-card div {
+    width: 100%;
+  }
+
+  .post-link {
     width: 100%;
   }
 }
